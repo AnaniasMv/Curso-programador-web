@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio2</title>
+</head>
+
+<body>
+    <script>
+        var nota1 = prompt('Digite a primeira nota');
+        var nota2 = prompt('Digite a segunda nota');
+        var resCalc = calcular(nota1, nota2)
+        document.write(`<h1>O resultado da media é <strong>${resCalc}<br></strong></h1>`)
+
+        function calcular(nota1, nota2) {
+            nota1 = parseFloat(nota1);
+            nota2 = parseFloat(nota2);
+            var res = nota1 + nota2 / 2;
+            return res
+        }
+
+        if (resCalc >= 6) {
+            document.write('<h2>Aprovado!</h2>')
+        }
+
+        else {
+            document.write('<h2>reprovado!</h2>')
+        }
+    </script>
+
+</body>
+
+</html>

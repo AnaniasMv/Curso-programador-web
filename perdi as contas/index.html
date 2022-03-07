@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular media</title>
+</head>
+
+<body>
+    <div>
+        <h1>Calculo de media</h1>
+        <label>Nota 1</label>
+        <input type="text" style="padding: 30px;" id="nota1" placeholder="Insira a primeira nota">
+        <label>Nota 2</label>
+        <input type="text" style="padding: 30px;" id="nota2" placeholder="Insira a segunda nota">
+        <button type="button" style="padding: 15px; font-size: 25x; border: none; border-radius: 8px; background-color: black; color: white;" onclick="calcularMedia()">Calcular</button>
+    </div>
+
+    <div id="resultado" style="background-color: #ccc; border-radius: 8px; padding: 50px; font-size: 20px; width: 500px; height: 400px; margin: auto;"></div>
+
+    <script>
+        function calcularMedia() {
+            var nota1 = document.getElementById('nota1').value;
+            var nota2 = document.getElementById('nota2').value;
+            var media = 0;
+            nota1 = parseFloat(nota1);
+            nota2 = parseFloat(nota2);
+            media = (nota1 + nota2) / 2;
+            if (media >= 6) {
+                document.getElementById('resultado').innerHTML = `A sua média é <strong>${media}</strong> Você está aprovado!`
+            }
+            else {
+
+                document.querySelector('#resultado').innerHTML = `A sua média é <strong>${media}</strong> Você está reprovado!`
+            }
+        }
+    </script>
+</body>
+
+</html>

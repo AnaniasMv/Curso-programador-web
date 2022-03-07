@@ -1,0 +1,37 @@
+.padrao {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: solid 2px black;
+
+}
+
+.grande {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    border: solid 2px black;
+
+}
+
+.redondo {
+    border-radius: 50%;
+}
+
+.quadrado {
+    border-radius: 0px;
+}
+
+ul{
+    list-style: none;
+}
+
+ul li button{
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 20px;
+    width: 200px;
+    margin: 5px;
+    background-color: #ccc;
+}

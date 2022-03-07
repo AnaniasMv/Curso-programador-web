@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var n = parseInt(prompt('Digite o valor de n'))
+        document.write('<pre>')
+        //laço que constroe cada linha
+        for(var i=1; i<=n; i++){
+           var txt = "";
+           txt += preencher ('&nbsp;', (n-i)) + preencher ("*", i);
+           document.write(txt+'<br>');
+        }
+        document.write('</pre>')
+        //Constroe os caracteres da linha
+        function preencher (char, n){
+            var txt = "";
+            for (var i=1; i<=n; i++){
+                txt +=char;
+            }
+            return txt;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetores</title>
+</head>
+
+<body>
+    <style>
+        html {
+            height: 100vh;
+            background-image: linear-gradient(35deg, #0CCEE8, #009DFF, #0C5AE8);
+        }
+
+        button {
+            padding: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            border: solid white 1px;
+            border-radius: 7px;
+            font-size: 15px;
+            background: none;
+            color: white;
+            margin-left: 30px;
+            transition: .2s;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #dfc014;
+            font-size: 17px;
+            padding: 18px;
+            border: none;
+        }
+
+        #exibicao {
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            color: white;
+            font-size: 20px;
+
+        }
+
+        header {
+            display: block;
+            margin-top: 350px;
+
+        }
+
+        .botoes {
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        #texto {
+            background: transparent;
+            color: white;
+            padding: 10px;
+            width: 350px;
+            font-size: 20px;
+            border: solid white 1px;
+        }
+
+        .input {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <header>
+        <div class="input"><input type="text" id="texto" autofocus></div>
+        <div class="botoes">
+            <button onclick="procurarNome()">Pesquisar</button>
+            <button onclick="excluirValor()">Excluir Valor</button>
+            <button onclick="inserirInicio()">Inserir no inicio</button>
+            <button onclick="inserirFinal()">Inserir no final</button>
+            <button onclick="excluirInicio()">Excluir do inicio</button>
+            <button onclick="excluirFinal()">Excluir do final</button>
+            <button onclick="alfabetica()">Ordem alfabética</button>
+        </div>
+    </header>
+    <div id='exibicao'></div>
+
+    <script>
+        var txt = document.getElementById('texto');
+        var div = document.getElementById('exibicao');
+        var listaNomes = ['Maria', 'Roberta', 'Aline', 'Cristiane'];
+        function procurarNome() {
+            var pesquisa = listaNomes.indexOf(txt.value);
+            if (pesquisa >= 0) {
+                alert('O valor pesquisado esta no indice:' + pesquisa)
+            } else {
+                alert('O item não existe' + pesquisa);
+            }
+            exibirLista();
+        }
+
+        function inserirInicio() {
+            if (txt.value != '') {
+                listaNomes.unshift(txt.value);
+                exibirLista()
+            }
+        }
+
+        function inserirFinal() {
+            if (txt.value != '') {
+                listaNomes.push(txt.value);
+                exibirLista()
+            }
+        }
+
+
+        function excluirInicio() {
+            listaNomes.shift(txt.value)
+            exibirLista()
+        }
+
+        function excluirFinal() {
+            listaNomes.pop(txt.value)
+            exibirLista()
+        }
+
+        function excluirValor() {
+            var index = pesquisarVetor(txt.value)
+            if (index >= 0) {
+                listaNomes.splice(index, 1)
+            } else {
+                alert('Esse nome não existe')
+            }
+            exibirLista()
+        }
+
+        function pesquisarVetor(str) {
+            var index = listaNomes.indexOf(str);
+            return index;
+        }
+
+        function exibirLista() {
+            div.innerHTML = '';
+            div.innerHTML = `${listaNomes}`
+        }
+
+        function alfabetica() {
+            listaNomes.sort()
+            exibirLista()
+        }
+
+        exibirLista();
+    </script>
+</body>
+
+</html>

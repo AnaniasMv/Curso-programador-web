@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Brincando</title>
+</head>
+
+<body>
+    <ul>
+        <li><h2>Escolha o formato</h2></li>
+        <li><button onclick="redondo('redondo')">Redondo</button></li>
+        <li><button onclick="quadrado('quadrado')">Quadrado</button></li>
+    </ul>
+    <ul>
+        <li><h2>Escolha o tamanho</h2></li>
+        <li><button onclick="pequeno('padrao')">Pequeno</button></li>
+        <li><button onclick="grande('grande')">Grande</button></li>
+    </ul>
+    <ul>
+        <li><h2>Escolha a cor</h2></li>
+        <li><button style="background-color: white; color: black; border: solid 2px black;" onclick="mudarCor('#ffffff')">Branco</button></li>
+        <li><button style="background-color: black; color: white;" onclick="mudarCor('#000000')">Preto</button></li>
+        <li><button style="background-color: red; " onclick="mudarCor('red')">Vermelho</button></li>
+        <li><button style="background-color: green;" onclick="mudarCor('green')">Verde</button></li>
+        <li><button style="background-color:blue;" onclick="mudarCor('blue')">Azul</button></li>
+    </ul>
+    <div id="quadro" class="padrao quadrado"></div>
+
+    <script src="func.js"></script>
+</body>
+
+</html>
