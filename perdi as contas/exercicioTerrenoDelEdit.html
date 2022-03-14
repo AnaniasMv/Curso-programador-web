@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+            integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+        <style>
+            deletebtn {
+                width: 15px;
+                height: 15px;
+            }
+        </style>
+        <title>Cálculo do terreno</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row my-2">
+                <div class="col-12">
+                    <div class="card">
+                        <!--Entradas - Campos e botão-->
+                        <div class="card-header">
+                            <h1>Cálculo Preço Terreno</h1>
+                        </div>
+                        <div class="card-body">
+                            <form id="form">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control" id="nome" name="nome"
+                                            placeholder="Nome do Cliente">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Preço</label>
+                                        <input type="text" class="form-control" id="preco" name="preco"
+                                            placeholder="Preço do terreno">
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Frente</label>
+                                        <input type="text" class="form-control" id="frente" name="frente"
+                                            placeholder="Metragem da frente">
+                                    </div>
+                                    <div class="col-12 col-md-4 col-sm-12">
+                                        <label>Comp.</label>
+                                        <input type="text" class="form-control" id="comprimento" name="comprimento"
+                                            placeholder="Metragem do comprimento">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-end">
+                            <button id="btnInserir" onclick="InserirItem()" class="btn btn-sm btn-primary">Inserir Registro</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <!--Tabela-->
+                <div id="divTabela" class="col-12 d-none align-self-center">
+                    <table class="small p-3 table table-striped table-hover table-bordered table-sm">
+                        <thead>
+                            <th class="text-light  bg-dark" scope="col">Ações</th>
+                            <th class="text-light  bg-dark" scope="col">ID</th>
+                            <th class="text-light  bg-dark" scope="col">Nome do Cliente</th>
+                            <th class="text-light  bg-dark" scope="col">Preço m²</th>
+                            <th class="text-light  bg-dark" scope="col">Frente (metragem)</th>
+                            <th class="text-light  bg-dark" scope="col">Comprimento (metragem)</th>
+                            <th class="text-light  bg-dark" scope="col">Área (m²)</th>
+                            <th class="text-light  bg-dark" scope="col">Preço Total</th>
+                        </thead>
+                        <tbody id="listaItem"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            var form = document.getElementById('form')
+            var tabela = Array();
+            var btnInserir = document.getElementById('btnInserir');
+            var edicao = 0; /*Variavel de controle  add||edit
+                             valor 0 indica add e >=1 indica edit*/
+
+            function InserirItem() {
+                if (edicao >= 1) {
+                    editarItem(edicao);
+                }
+                else {
+                    InserirNovo();
+                }
+                construirTabela();
+                limparCampos()
+            }
+
+            function editarItem(id) {
+                for (var i in tabela) {
+                    if (tabela[i][0] == id) {
+                        var area = calcularArea(form.frente.value, form.comprimento.value);
+                        var precoTotal = calcularPreco(area, form.preco.value);
+                        tabela[i][1] = form.nome.value;
+                        tabela[i][2] = form.preco.value;
+                        tabela[i][3] = form.frente.value;
+                        tabela[i][4] = form.comprimento.value;
+                        tabela[i][5] = area;
+                        tabela[i][6] = precoTotal;
+                        edicao = 0; //atribuir 0 para que a proxima transaçao seja de add
+                        break;
+                    }
+                }
+            }
+
+            function editarRegistro(id) {
+                for (var i in tabela) {
+                    if (tabela[i][0] == id) {
+                        form.nome.value = tabela[i][1];
+                        form.preco.value = tabela[i][2];
+                        form.frente.value = tabela[i][3];
+                        form.comprimento.value = tabela[i][4];
+                        form.nome.focus();
+                        edicao = id; //atribui o valor ID à variavel de controle
+                        btnInserir.innerHTML = 'Atualizar registro';
+                        break;
+                    }
+                }
+            }
+            function excluirRegistro(id) {
+                for (var i in tabela) {
+                    if (tabela[i][0] == id) {
+                        tabela.splice(i, 1);
+                        construirTabela();
+                        break;
+                    }
+                }
+            }
+
+            function limparCampos() {
+                form.nome.value = '';
+                form.preco.value = '';
+                form.frente.value = '';
+                form.comprimento.value = '';
+                form.nome.focus();
+            }
+
+            function InserirNovo() {
+                var id, area, precoTotal;
+                id = parseInt(tabela.length) + 1;
+                area = calcularArea(form.frente.value, form.comprimento.value);
+                precoTotal = calcularPreco(area, form.preco.value);
+                var linha = [
+                    id,
+                    form.nome.value,
+                    form.preco.value,
+                    form.frente.value,
+                    form.comprimento.value,
+                    area,
+                    precoTotal
+                ];
+                tabela.push(linha);
+
+
+            }
+
+            function calcularArea(largura, comprimento) {
+                var area = parseFloat(largura) * parseFloat(comprimento);
+                return area
+            }
+
+            function calcularPreco(area, preco) {
+                precoTotal = parseFloat(area) * parseFloat(preco);
+                return precoTotal
+            }
+
+            function construirTabela() {
+                exibirTabela();
+                var tbody = document.getElementById('listaItem');
+                tbody.innerHTML = '';
+                tabela.forEach(function (vet, i) {
+                    var linhaTabela = tbody.insertRow();
+                    var btnEdit = criarBotao('edit', tabela[i][0])
+                    var btnDel = criarBotao('del', tabela[i][0])
+                    console.log(btnEdit);
+                    console.log(btnDel);
+                    linhaTabela.insertCell().appendChild(btnEdit).appendChild(btnDel);
+                    tabela[i].forEach(function (val, j) {
+                        linhaTabela.insertCell(j + 1).innerHTML = tabela[i][j];
+                    });
+                });
+            }
+
+            function exibirTabela() {
+                var divTabela = document.getElementById('divTabela');
+                divTabela.classList.remove('d-none');
+                divTabela.classList.add('d-sm-block')
+            }
+
+            function criarBotao(botao, id) {
+                var btn = document.createElement('button');
+                btn.className = 'btn';
+                var icon = document.createElement('img');
+                if (botao == 'edit') {
+                    icon.src = " https://img.icons8.com/ios-glyphs/15/4a90e2/edit--v1.png";
+                    btn.onclick = function(){editarRegistro(id)}
+                }
+                if(botao=='del'){
+                    icon.src ="https://img.icons8.com/dusk/15/000000/trash.png"
+                    btn.onclick = function(){excluirRegistro(id)}
+                }
+                btn.appendChild(icon)
+                return btn
+            }
+
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    </body>
+
+    </html>

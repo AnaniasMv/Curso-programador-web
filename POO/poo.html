@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./class.js"></script>
+
+   <script>
+   var v1 = prompt('Informe o primeiro numero');
+   var op = prompt('Informe o operador - ex: + - * / ');
+   var v2 = prompt('Informe o segundo numero');
+   var calcular = new Calculadora(v1,op,v2);
+   document.write(`O resultado é: ${calcular.calcular()}`)
+   </script>
+
+</html>
