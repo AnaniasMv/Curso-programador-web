@@ -1,0 +1,8 @@
+Dados do clima https://home.openweathermap.org/
+url: https://api.openweathermap.org/data/2.5/weather?
+Parametros:
+appid: de87afce2ee62271af2a1d51f5f395a2
+q=sao+paulo,br (EX:Cidade, sigla do pais)
+units=metric
+lang=pt_br
+

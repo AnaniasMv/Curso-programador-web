@@ -1,0 +1,5 @@
+Desafio CarrinhoCompras: Construir uma classe CarrinhoCompras que tenha como atributos: data da compra, um objeto Cliente composto por nome e endereço
+e o atributo produtos onde serão agregado N objetos da classe protuto.
+A classe produto deve ter os atributos descrição e preco.
+A classe Carrinho de compras deve ter um método par a somar os preços de todos os produtos agregados e exibir o total.
+

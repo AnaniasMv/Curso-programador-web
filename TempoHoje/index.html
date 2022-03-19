@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tempo Hoje</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/f21f9a261d.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="bg">
+
+        <div id="link">
+            <form action="#">
+                <div class="select">
+                    <select name="cidades" id="selCidades" onchange="mudarCidade(this.value) ">
+                        <option value="0">Escolha uma cidade</option>
+                        <option value="Catanduva,br">Catanduva SP</option>
+                        <option value="Sao+Carlos,br">São Carlos SP</option>
+                        <option value="Ribeirao+Preto,br">Ribeirão Preto SP</option>
+                        <option value="Sao+Paulo,br">São Paulo SP</option>
+                        <option value="Porto+Alegre,br">Porto Alegre RS</option>
+                        <option value="New+York,us">Nova Youk NY</option>
+                        <option value="London,gb">Londres GB</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        
+    <main>
+        <div id="exibir">
+            <h3 id="cidade"></h3>
+            <b>Coordenadas</b><br>
+            <b>Longitude:</b><span id="longitude"></span> | <b>Latitude:</b><span id="latitude"></span>
+            <ul>
+                <li><b>Hoje está:</b><span id="status"></span></li>
+                <li><b>Tempetura:</b><span id="temperatura"></span></li>
+                <li><b>Maxima de:</b><span id="maxima"></span></li>
+                <li><b>Mínima de:</b><span id="minima"></span></li>
+            </ul>
+        </div>
+    </main>
+    <script src="./index.js"></script>
+    <script>
+        var cidade, longitude, latitude, status, temperatura, maxima, minima;
+        cidade = document.getElementById('cidade');
+        longitude = document.getElementById('longitude');
+        latitude = document.getElementById('latitude');
+        temperatura = document.getElementById('temperatura');
+        maxima = document.getElementById('maxima');
+        minima = document.getElementById('minima');
+
+        function mudarCidade(pesquisa){
+            pesquisa = '&q='+pesquisa;
+            conectarAPI(pesquisa)
+        }
+
+        function exibirDados(resultado){
+            cidade.innerHTML= resultado.name;
+            longitude.innerHTML=resultado.coord.lon;
+            latitude.innerHTML=resultado.coord.lat;
+            temperatura.innerHTML = resultado.main.temp;
+            maxima.innerHTML=resultado.main.temp_max;
+            minima.innerHTML=resultado.main.temp_min;
+        }
+
+    </script>
+</body>
+
+</html>

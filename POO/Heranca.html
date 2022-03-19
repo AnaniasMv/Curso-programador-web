@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heranca</title>
+</head>
+
+<body>
+    <script src="heranca.js"></script>
+
+    <script>
+
+        console.log(cachorro)
+
+        var cachorro2 = new Animal('Cachorro', 'Caramelo', 'Medio', 12)
+        console.log(cachorro2)
+
+
+        var animal = new Animal('Zebra', 'Listado', 'Grande', 100)
+        console.log(animal.especie + ' está ')
+        animal.dormir()
+
+        var papagaio = new Papagaio(false)
+        console.log(papagaio)
+        papagaio.falar()
+        papagaio.voar()
+        papagaio.dormir()
+
+        var aguia = new Aguia(false, 'Branca')
+        console.log(aguia)
+        aguia.sabeCacar = true;
+        aguia.bico = 'Pontudo e cumprido'
+        aguia.peso = 15
+        console.log(aguia)
+        
+    </script>
+</body>
+
+</html>

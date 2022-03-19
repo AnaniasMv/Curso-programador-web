@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var heroi = {
+            Nome: "SuperMan",
+            IdentidadeSecreta: "Clark Kent",
+            Poderes: [
+                "voar",
+                "visão raio X",
+                "super força",
+                "super sopro",
+                "super velocidade"
+            ],
+            Fraqueza: "kriptonita",
+            TemMedo: "Lois Lane"
+        }
+
+        //Algumas funções interessantes para manipular objetos
+        console.log('Objeto inteiro')
+        console.log(heroi)
+
+        console.log('Apenas chaves: Object.keys')
+        console.log(Object.keys(heroi))
+
+        console.log('apenas valores: Object.values')
+        console; log(Object.values(heroi))
+
+        console.log('Vetores com chave/valor: Object.entries')
+        console.log(Object.entries(heroi))
+
+        //A função freeze de um objeto congela a alteração,
+        //Tornando o objeto e a referencia da memoria uma constante
+        Object.freeze(heroi)
+    </script>
+</body>
+
+</html>
