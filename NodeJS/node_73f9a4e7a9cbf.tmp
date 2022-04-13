@@ -1,0 +1,18 @@
+var express = require('express');
+const res = require('express/lib/response');
+var app = express();
+app.get('/', function(req, res){
+    res.send('<h1>Tela Inicial</h1>');
+})
+
+app.get('/cadastro', function(req, res){
+    res.send('<h1>Tela de cadastro</h1>');
+})
+
+app.get('/consulta', function(req, res){
+    res.send('<h1>Tela de consulta</h1>');
+})
+
+app.listen(8180, function(){
+   console.log('Servidor rodando...')
+})
